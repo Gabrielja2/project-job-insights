@@ -11,7 +11,7 @@ def get_unique_industries(path: str) -> List[str]:
         else:
             industrie_set.add(industrie['industry'])
     return list(industrie_set)
-    
+
 
 def filter_by_industry(jobs: List[Dict], industry: str) -> List[Dict]:
     """Filters a list of jobs by industry
