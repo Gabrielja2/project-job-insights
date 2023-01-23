@@ -4,16 +4,18 @@ import csv
 
 
 @lru_cache
-def read(path: str) -> List[Dict]:    
+def read(path: str) -> List[Dict]:
     with open(path, mode="r") as file:
         DictReader_obj = csv.DictReader(file)
-        return [row for row in DictReader_obj]    
+        return list(DictReader_obj)
 
 
 def get_unique_job_types(path: str) -> List[str]:
-    obj = read(path)
-    for item in obj:
-     return item['job_type']
+    jobs = read(path)
+    job_set = set()
+    for job in jobs:
+        job_set.add(job['job_type'])
+    return list(job_set)
 
 
 def filter_by_job_type(jobs: List[Dict], job_type: str) -> List[Dict]:
