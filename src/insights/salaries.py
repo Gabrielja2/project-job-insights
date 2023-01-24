@@ -38,18 +38,12 @@ def filter_by_salary_range(
     jobs: List[dict],
     salary: Union[str, int]
 ) -> List[Dict]:
-    """Filters a list of jobs by salary range
-
-    Parameters
-    ----------
-    jobs : list
-        The jobs to be filtered
-    salary : int
-        The salary to be used as filter
-
-    Returns
-    -------
-    list
-        Jobs whose salary range contains `salary`
-    """
-    raise NotImplementedError
+    filtered_by_salary_range = []
+    for job in jobs:
+        try:
+            matches_salary = matches_salary_range(job, salary)
+            if matches_salary is True:
+                filtered_by_salary_range.append(job)
+        except ValueError:
+            continue
+    return filtered_by_salary_range
